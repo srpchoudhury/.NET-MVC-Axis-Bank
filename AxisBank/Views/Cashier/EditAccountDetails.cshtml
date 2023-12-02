@@ -1,0 +1,137 @@
+﻿@model AxisBank.Models.AxisBank_tblAllAccount
+@{
+    ViewBag.Title = "EditAccount Details";
+    Layout = "~/Views/Shared/_LayoutCashier.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="container">
+    @using (Html.BeginForm("EditAccount", "Cashier", FormMethod.Post, new { @class = "needs-validation", novalidate = "true", @id = "yourFormId" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="mb-3 row">
+            <div class="col">
+                @Html.LabelFor(model => model.RoleId, new { @class = "form-label" })
+                @Html.EditorFor(model => model.RoleId, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @Html.LabelFor(model => model.CustomerId, new { @class = "form-label" })
+                @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @Html.LabelFor(model => model.AccountNo, new { @class = "form-label" })
+                @Html.EditorFor(model => model.AccountNo, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.AccountNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="mb-3 row">
+
+            <div class="col">
+                @Html.LabelFor(model => model.FirstName, new { @class = "form-label" })
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @Html.LabelFor(model => model.LastName, new { @class = "form-label" })
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @Html.LabelFor(model => model.Password, new { @class = "form-label" })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+
+            <div class="col">
+                @Html.Label("Account Type", new { @class = "form-label" })
+                @Html.DropDownListFor(model => model.AccountType, new SelectList(new List<string> { "Savings", "Current", "Zero" }), "Select Account Type", new { @class = "form-select", required = "required" })
+                @Html.ValidationMessageFor(model => model.AccountType, "", new { @class = "text-danger" })
+            </div>
+            @*<div class="col">
+
+                @Html.LabelFor(model => model.Imup, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.Imup, new { type = "file", accept = "image/*", @class = "form-control" })
+
+            </div>*@
+            <div class="col">
+                @Html.LabelFor(model => model.Email, new { @class = "form-label" })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", required = "required", type = "email" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col">
+                @Html.LabelFor(model => model.MobileNo, new { @class = "form-label" })
+                @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @Html.LabelFor(model => model.MaritalStatus, new { @class = "form-label" })
+                @Html.DropDownListFor(model => model.MaritalStatus, new SelectList(new List<string> { "Married", "Un Married" }), "Select Status", new { @class = "form-select", required = "required" })
+                @Html.ValidationMessageFor(model => model.MaritalStatus, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @Html.LabelFor(model => model.DateOfBirth, new { @class = "form-label" })
+                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", required = "required", type = "date" } })
+                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col">
+                @Html.Label("ID Card Type", new { @class = "form-label" })
+                @Html.DropDownListFor(model => model.IdCardType, new SelectList(new List<string> { "Pancard", "Adhar Card", "Other" }), "Select ID Card Type", new { @class = "form-select", required = "required" })
+                @Html.ValidationMessageFor(model => model.IdCardType, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @Html.LabelFor(model => model.IdCardNumber, new { @class = "form-label" })
+                @Html.EditorFor(model => model.IdCardNumber, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.IdCardNumber, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @Html.Label("Gender", new { @class = "form-label" })
+                @Html.DropDownListFor(model => model.Gender, new SelectList(new List<string> { "Male", "Female", "Other" }), "Select Gender", new { @class = "form-select", required = "required" })
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="mb-3 row">
+
+
+            <div class="col">
+                @Html.LabelFor(model => model.Address, new { @class = "form-label" })
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+
+        </div>
+
+
+
+        <div class="mb-3 text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+
+    
+
+    }
+</div>
+
+<script>
+    document.getElementById("AccountNo").readOnly = true;
+    document.getElementById("CustomerId").readOnly = true;
+    document.getElementById("RoleId").readOnly = true;
+</script>

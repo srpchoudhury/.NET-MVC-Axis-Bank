@@ -1,0 +1,46 @@
+﻿@model AxisBank.Models.ForDeposite
+@{
+    ViewBag.Title = "CheckAccountForWithdrawOperation";
+    Layout = "~/Views/Shared/_LayoutCashier.cshtml";
+}
+
+<h2>Withdraw Operation</h2>
+
+<div class="container">
+
+
+    @using (Html.BeginForm("WithdrawAmountInAccount", "Cashier", FormMethod.Post, new { @class = "needs-validation", novalidate = "true" }))
+    {
+
+        <div class="mb-3 row">
+
+            <div class="col">
+
+                @*@Html.DisplayForModel("Account No", new { @class = "form-control" })*@
+                <label class="form-label" for="lblEmail">Account No</label>
+                @Html.EditorFor(model => model.AccountNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AccountNo, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @*@Html.DisplayForModel("FirstName", new { @class = "form-control" })*@
+                <label class="form-label" for="lblEmail">First Name</label>
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+            <div class="mb-3 row">
+                <div class="col">
+                    <label class="form-label" for="lblEmail">Enter Amount</label>
+                    @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script>
+    document.getElementById("AccountNo").readOnly = true;
+    document.getElementById("FirstName").readOnly = true;
+</script>

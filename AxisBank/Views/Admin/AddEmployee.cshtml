@@ -1,0 +1,79 @@
+﻿@model AxisBank.Models.EmployeeList
+@{
+    ViewBag.Title = "AddEmployee";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Content/DesignForm.css" rel="stylesheet" />
+
+
+
+
+<div class="container">
+
+
+    @using (Html.BeginForm("EmployeeAdded", "Admin", FormMethod.Post, new { @class = "needs-validation", novalidate = "true" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="mb-3 row">
+
+            <div class="col">
+
+
+                <label class="form-label" for="lblEmail">Employee Name</label>
+                @Html.EditorFor(model => model.EmployeeName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="col">
+                @Html.Label("Role Type", new { @class = "form-label" })
+                @Html.DropDownListFor(model => model.Role, (IEnumerable<SelectListItem>)ViewData["ROLEselectListItems"], new { @class = "form-select", required = "required" })
+                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <div class="mb-3 row">
+            <div class="col">
+                @Html.Label("User Name", new { @class = "form-label" })
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col">
+                @Html.LabelFor(model => model.Password, new { @class = "form-label" })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Add Employee</button>
+    }
+</div>
+
+<script>
+        // Check if a success message is available in TempData
+    var successMessage = '@TempData["SuccessMessage"]';
+    // Check if an error message is available in TempData
+    var errorMessage = '@TempData["ErrorMessage"]';
+
+    var SMessage = '@TempData["SMessage"]';
+
+      var ErrorMessage = '@TempData["EMessage"]';
+
+    if (successMessage) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Registration Successful!',
+            html: '<i class="fas fa-check-circle"></i> ' + successMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    } else if (errorMessage) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Registration Error',
+            text: errorMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    }
+</script>

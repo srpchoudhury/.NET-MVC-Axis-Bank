@@ -1,0 +1,215 @@
+﻿@model AxisBank.Models.TransferMoney
+@{
+    ViewBag.Title = "TransferMoney";
+    Layout = "~/Views/Shared/_LayoutCashier.cshtml";
+}
+
+
+<style>
+
+
+
+    [type="submit"]:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    /* Add styles for validation messages (e.g., for required fields) */
+    .field-validation-error {
+        color: #ff0000; /* Red text for validation errors */
+        font-size: 14px;
+    }
+
+    /* Style for form labels */
+    .form-label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px; /* Add some spacing below the label */
+    }
+
+    /* Style for input fields */
+    .form-control {
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    /* Style for the box containers */
+    .box {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 10px;
+    }
+
+    /* Style for headings */
+    .heading {
+        background-color: #f0f0f0;
+        padding: 10px;
+        margin: -20px -20px 20px -20px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+        /* Center the headings */
+        .heading h4 {
+            margin: 10px 0;
+        }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<h2>Transfer Money</h2>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box">
+                <div class="heading">
+                    <h4>Source Account</h4>
+                </div>
+                <div class="body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SourceAccountNo, new { @class = "form-label" })
+                        @Html.EditorFor(model => model.SourceAccountNo, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SourceName, new { @class = "form-label" })
+                        @Html.EditorFor(model => model.SourceName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Amount To Transfer", new { @class = "form-label" })
+                        @Html.EditorFor(model => model.AmountToTransfer, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box">
+                <div class="heading">
+                    <h4>Beneficiary Account</h4>
+                </div>
+                <div class="body">
+                    <div class="form-group">
+                        <div class="search" style="display:flex; justify-content:space-between">
+                            <div class="searched">
+                                @Html.LabelFor(model => model.DestinationAccountNo, new { @class = "form-label" })
+                                @Html.EditorFor(model => model.DestinationAccountNo, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+
+                            </div>
+                            <div class="searched" style="margin-top: 26px; ">
+                                <button class="btn btn-success" id="accSearch">Search</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DestinationName, new { @class = "form-label" })
+                        @Html.EditorFor(model => model.DestinationName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <button class="btn btn-success" id="transferMoney">Transfer</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+        </div>
+        <div class="col-3">
+
+        </div>
+        <div class="col-6">
+
+        </div>
+    </div>
+
+</div>
+<script>
+
+    $(document).ready(function () {
+        $("#accSearch").click(function () {
+            var accNo = $("#DestinationAccountNo").val();
+            $.ajax({
+                url: "/Cashier/GetAccountDetailsByUsingAjaxFirst",
+                type: "GET",
+                data: { accNo: accNo },
+                success: function (data) {
+                    if (data) {
+                        $("#DestinationName").val(data.FirstName);
+                     
+                        document.getElementById("DestinationAccountNo").readOnly = true;
+                        document.getElementById("DestinationName").readOnly = true;
+
+                    } else {
+                        showErrorAlert("No Account Found");
+                    }
+                },
+                error: function () {
+                    showErrorAlert("No Account Found");
+                }
+            });
+        });
+
+        $("#transferMoney").click(function () {
+            var SourceAccountNo = $("#SourceAccountNo").val();
+            var DestinationAccountNo = $("#DestinationAccountNo").val();
+            var AmountToTransfer = $("#AmountToTransfer").val();
+            var description = $("#Description").val();
+            var sourceName = $("#SourceName").val();
+            var destinationName = $("#DestinationName").val();
+
+            $("#SourceAccountNo").val('');
+            $("#DestinationAccountNo").val('');
+            $("#AmountToTransfer").val('');
+            $("#Description").val('');
+            $("#SourceName").val('');
+            $("#DestinationName").val('');
+
+            $.ajax({
+                url: "/Cashier/TransferMoneyFinally",
+                type: "POST",
+                data: {
+                    SourceAccountNo: SourceAccountNo, DestinationAccountNo: DestinationAccountNo, AmountToTransfer: AmountToTransfer,
+                    description: description, sourceName: sourceName, destinationName: destinationName
+                },
+                success: function (data) {
+
+                    if (data) {
+                        showSuccessAlert(data.SuccessMessage);
+                    } else {
+                        showErrorAlert(data.ErrorMessage);
+                    }
+                },
+                error: function () {
+                    showErrorAlert("Money Not Transfered");
+                }
+            });
+
+        });
+    });
+
+    function showSuccessAlert(message) {
+        Swal.fire({
+            icon: 'success',
+            text: message,
+            confirmButtonText: 'OK'
+        });
+    }
+
+    function showErrorAlert(message) {
+        Swal.fire({
+            icon: 'error',
+            text: message,
+            confirmButtonText: 'OK'
+        });
+    }
+
+</script>

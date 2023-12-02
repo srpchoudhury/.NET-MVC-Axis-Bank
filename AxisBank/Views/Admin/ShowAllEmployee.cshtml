@@ -1,0 +1,108 @@
+﻿@model IEnumerable<AxisBank.Models.AllDetailsOfEmployee>
+
+@{
+    ViewBag.Title = "ShowAllEmployee";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<style>
+    p {
+        padding: 10px;
+        background-color: #97144d;
+        width: 100px;
+    }
+    p a {
+text-decoration: none;
+        color: white;
+        font-weight: bold;
+    }
+</style>
+
+<p>
+    @Html.ActionLink("Add New", "AddEmployee","Admin",new {}, new { @id="btnCreate"} )
+
+</p>
+<table class="table ">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+
+      
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+
+         
+        </tr>
+    }
+
+</table>
+
+<script>
+        // Check if a success message is available in TempData
+    var successMessage = '@TempData["SuccessMessage"]';
+    // Check if an error message is available in TempData
+    var errorMessage = '@TempData["ErrorMessage"]';
+
+    var SMessage = '@TempData["SMessage"]';
+
+      var ErrorMessage = '@TempData["EMessage"]';
+
+    if (successMessage) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Registration Successful!',
+            html: '<i class="fas fa-check-circle"></i> ' + successMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    } else if (errorMessage) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Registration Error',
+            text: errorMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    }else if (SMessage) {
+        Swal.fire({
+            icon: 'success',
+            text: SMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    }else if (EMessage) {
+        Swal.fire({
+            icon: 'error',
+            text: EMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    }
+
+</script>

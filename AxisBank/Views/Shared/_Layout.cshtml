@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -Axis Bank</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    <style>
+
+        .nav-link {
+            color: #ffffff !important;
+        }
+
+        .Axis_Bank {
+            color: #ffffff !important;
+            font-weight: bold;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+        }
+
+        .navbar {
+            background-color: #97144c;
+            color: #ffffff;
+            padding: 10px 0;
+        }
+
+            .navbar a {
+                color: #ffffff !important;
+                text-decoration: none;
+                position: relative;
+                transition: color 0.3s ease;
+            }
+
+                .navbar a::before {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background-color: #ffffff;
+                    transition: width 0.3s ease;
+                }
+
+                .navbar a:hover {
+                    color: #ffffff !important;
+                }
+
+                    .navbar a:hover::before {
+                        width: 100%;
+                    }
+
+        /* Footer styles */
+        footer {
+            background-color: #444444;
+            color: #e4e4e4;
+            padding: 20px;
+        }
+
+            footer a {
+                color: #ffffff;
+                text-decoration: none;
+                position: relative;
+                transition: color 0.3s ease;
+            }
+
+                footer a::before {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background-color: #ffffff;
+                    transition: width 0.3s ease;
+                }
+
+                footer a:hover {
+                    color: #ffffff;
+                }
+
+                    footer a:hover::before {
+                        width: 100%;
+                    }
+
+            footer ul.list-inline {
+                padding: 0;
+            }
+
+                footer ul.list-inline li {
+                    display: inline;
+                }
+
+                    footer ul.list-inline li:not(:last-child)::after {
+                        margin-left: 10px;
+                        margin-right: 10px;
+                    }
+
+
+        /*.body-content {
+            height: 100vh;
+        }*/
+
+        #popup {
+            display: none;
+            height: 300px;
+            width: 230px;
+            position: absolute;
+            top: 100%;
+            left: 80%; /* Adjust as needed */
+            z-index: 999;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .popup_link {
+            color: #97144c;
+            font-weight: bold;
+            background-color: #97144c;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var timeout;
+
+            // When the login link is hovered
+            $("a#login-link").hover(
+                function () {
+                    // Clear any existing timeouts
+                    clearTimeout(timeout);
+                    // Show the div
+                    $("#popup").show();
+                },
+                function () {
+                    // Set a timeout to hide the div after a short delay (e.g., 500 milliseconds)
+                    timeout = setTimeout(function () {
+                        $("#popup").hide();
+                    }, 500);
+                }
+            );
+
+            // When the login popup is hovered
+            $("#popup").hover(
+                function () {
+                    // Clear any existing timeouts
+                    clearTimeout(timeout);
+                },
+                function () {
+                    // Set a timeout to hide the div after a short delay (e.g., 500 milliseconds)
+                    timeout = setTimeout(function () {
+                        $("#popup").hide();
+                    }, 500);
+                }
+            );
+        });
+
+
+
+    </script>
+
+
+
+</head>
+<body>
+    @*Navbar*@
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #97144c;">
+        <div class="container">
+            <img src='~/Images/unnamed.png' class="logo" alt='logo' />
+            @Html.ActionLink("Axis Bank", "Landing", "AxisBankHome", new { @area = "" }, new { @class = "navbar-brand Axis_Bank" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Personal", "", "", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Bussiness", "", "", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Priority", "", "", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Burgundy", "", "", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("NRI", "", "", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("About us", "", "", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Support", "", "", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Dil Se Open", "", "", new { @area = "" }, new { @class = "nav-link" })
+                    </li>
+                </ul>
+            </div>
+            <!-- Add the login button here -->
+
+
+
+            <a id="login-link" style="font-weight:bold">Login</a>
+            <!-- when login link is hovered then a div will append under the login link with white background and height 300px and width 300px -->
+
+            <div id="popup">
+                @Html.ActionLink("Internet Banking", "InternetBanking", "AxisBankHome", new { }, new { @class = "popup_link" });
+                <hr style="color: #97144c;" />
+                @Html.ActionLink("Login", "Login", "AxisBankHome", new { }, new { @class = "popup_link" })
+                <b style="color: #97144c;">|</b>
+                @Html.ActionLink("Register", "SignUp", "AxisBankHome", new { }, new { @class = "popup_link" })
+                <hr style="color: #97144c;" />
+                @Html.ActionLink("Payment Solution", "", "", new { }, new { @class = "popup_link" });
+                <hr style="color: #97144c;" />
+                @Html.ActionLink("Cards", "", "", new { }, new { @class = "popup_link" });
+                <hr style="color: #97144c;" />
+                @Html.ActionLink("Power Access", "", "", new { }, new { @class = "popup_link" });
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </nav>
+
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+
+
+    </div>
+
+    <!-- Footer -->
+    <footer style="background-color: #444444; color: #e4e4e4; padding: 20px;">
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>&copy; @DateTime.Now.Year Suyog India Private Limited. All Rights Reserved.</p>
+            </div>
+            <div class="col-md-6 text-right">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Disclaimer</a></li>
+                    <li class="list-inline-item">|</li>
+                    <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                    <li class="list-inline-item">|</li>
+                    <li class="list-inline-item"><a href="#">Code Of Commitment</a></li>
+                    <li class="list-inline-item">|</li>
+                    <li class="list-inline-item"><a href="#">Responsible Disclosure Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

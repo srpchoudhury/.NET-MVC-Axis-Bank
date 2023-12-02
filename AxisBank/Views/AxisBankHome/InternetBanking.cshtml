@@ -1,0 +1,84 @@
+﻿@model AxisBank.Models.AxisBank_tblAllAccount
+@{
+    ViewBag.Title = "InternetBanking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .box {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .popup_link {
+        color: white;
+        font-weight: bold;
+    }
+
+    #btnGet {
+        margin-top: 30px;
+    }
+
+    .col-6:nth-child(2) {
+        display: none;
+    }
+
+    .box {
+        margin-bottom: 313px;
+    }
+</style>
+
+
+    <div class="box">
+        <div class="row">
+            <div class="col-6">
+                @Html.LabelFor(model => model.CustomerId, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @class = "form-control", @placeholder = "Customer Id" } })
+                @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+
+                <a class="popup_link">Get Your CustomerId</a>
+            </div>
+            <div class="col-6">
+                @Html.LabelFor(model => model.AccountNo, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.AccountNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Account No" } })
+                @Html.ValidationMessageFor(model => model.AccountNo, "", new { @class = "text-danger" })
+
+                <button class="btn btn-danger" id="btnGet">Click To Get</button>
+
+            </div>
+        </div>
+        <div class="row">
+            @* create a action link that should redirect to Login page *@
+            <div class="col-6">
+                @Html.ActionLink("Login", "Login", "AxisBankHome", new { }, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $(".popup_link").click(function () {
+            $(".col-6:nth-child(2)").show();
+        });
+        $("#btnGet").click(function () {
+            var accNo = $("#AccountNo").val();
+            $.ajax({
+                url: "/AxisBankHome/GetCustomerId",
+                data: { accNo: accNo },
+                type: "GET",
+                success: function (data) {
+                    $("#CustomerId").val(data);
+                },
+                error: function () {
+                    alert("Error");
+                }
+            });
+        });
+    });
+</script>
+

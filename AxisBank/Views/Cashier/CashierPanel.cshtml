@@ -1,0 +1,199 @@
+﻿@model AxisBank.Models.Dashboard
+@{
+    ViewBag.Title = "Cashier Panel";
+    Layout = "~/Views/Shared/_LayoutCashier.cshtml";
+}
+
+<style>
+    /* Main Section */
+    .main {
+        position: relative;
+        padding: 20px;
+        width: 100%;
+        color: #fff; /* Text color */
+    }
+
+    .main-skills {
+        display: flex;
+        margin-top: 20px;
+        justify-content: space-between;
+    }
+    .main-skill {
+        display: flex;
+        margin-top: 20px;
+        justify-content: space-between;
+    }
+
+
+        .main-skills .card {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    .main-skill .card {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        text-align: center;
+        border-radius: 20px;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+        .main-skill .card h5 {
+            margin: 10px;
+            text-transform: capitalize;
+            color: rgba(255, 255, 255, 0.8)
+        }
+
+
+            .main-skills .card h3 {
+                margin: 10px;
+                text-transform: capitalize;
+                color: #333; /* Dark text color */
+            }
+
+            .main-skills .card h5 {
+                color: rgba(255, 255, 255, 0.8);
+                font-weight: bold;
+            }
+
+            .main-skills .card p {
+                font-size: 12px;
+                color: #555; /* Medium text color */
+            }
+
+            .main-skills .card button {
+                background: orangered;
+                color: #fff;
+                padding: 7px 15px;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+
+                .main-skills .card button:hover {
+                    background: rgba(223, 70, 15, 0.856);
+                }
+
+            .main-skills .card i {
+                font-size: 22px;
+                padding: 10px;
+            }
+
+            /* Cards background color */
+            .main-skills .card:nth-child(1) {
+                background: #FF5252; /* Red color */
+            }
+
+            .main-skills .card:nth-child(2) {
+                background: #1976D2; /* Blue color */
+            }
+
+            .main-skills .card:nth-child(3) {
+                background: #00BCD4; /* Cyan color */
+            }
+
+            .main-skill .card:nth-child(1) {
+                background: #FFA726; /* Orange color */
+            }
+
+            .main-skill .card:nth-child(2) {
+                background: rgba(223, 70, 15, 0.856);
+            }
+
+            .main-skills .card:nth-child(4) {
+                background: #a1ba62;
+            }
+</style>
+
+<div class="main">
+    <div class="row">
+        <div class="main-skills">
+            <div class="card">
+                <div class="card-header ">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="card-body">
+                    <h5>Total Customers</h5>
+                </div>
+                <div class="card-footer ">
+                    <h5>@Model.totalCustomers</h5>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header ">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <div class="card-body">
+                    <h5>Total Deposit</h5>
+                </div>
+                <div class="card-footer ">
+                    <h5>@Model.totalDeposite</h5>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header ">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <div class="card-body">
+                    <h5>Total Withdraw</h5>
+                </div>
+                <div class="card-footer ">
+                    <h5>@Model.totalWithdraw</h5>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header ">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="card-body">
+                    <h5>Have a Good </h5>
+                </div>
+                <div class="card-footer ">
+                    <h5>@Model.todayDay</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="main-skill">
+            <div class="card">
+                <div class="card-header ">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <div class="card-body">
+                    <h5>  Total Deposite Today<h5>
+                </div>
+                <div class="card-footer ">
+                    <h5>@Model.totalDepositeToday</h5>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header ">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <div class="card-body">
+                    <h5>Total Withdraw Today</h5>
+                </div>
+                <div class="card-footer ">
+                    <h5>@Model.totalWithdrawToday</h5>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+
+
+</div>
+

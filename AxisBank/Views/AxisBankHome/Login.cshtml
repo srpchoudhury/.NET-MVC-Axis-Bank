@@ -1,0 +1,184 @@
+﻿
+@model AxisBank.Models.AxisBank_tblLogin
+@using CaptchaMvc.HtmlHelpers;
+
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+
+}
+
+
+<link href="~/Content/login.css" rel="stylesheet" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+@Styles.Render("~/Content/css")
+@*<link href="~/Content/bootstrap-notify.css" rel="stylesheet" />*@
+<!-- Include Bootstrap Notify CSS -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
+<style>
+    .capcha_img {
+        text-align: center;
+        margin-top: -15px;
+        margin-bottom: 35px;
+        margin-left: -40px;
+        color: black;
+        font-weight: bold;
+        position: relative;
+    }
+
+    .login-form h2 {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 30px;
+    }
+
+    .login-form {
+        width: 400px;
+    }
+
+        .login-form h2 {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .login-form .form-group {
+            padding-left: 40px;
+        }
+
+    .forgot-password-link,
+    .register-link {
+        margin-top: 10px;
+        margin-left: 15px;
+        font-weight: bold;
+    }
+
+    .register-link {
+        margin-left: 10px;
+        justify-content: space-around;
+    }
+
+    .capcha_img img {
+        height: 50px;
+        border-radius: 10px;
+    }
+
+
+    .capcha_img .help-block {
+        color: red;
+        font-weight: 400;
+        position: absolute;
+        bottom: -24px;
+        left: 40%;
+        transform: translateX(-50%);
+        margin: 0;
+        /* display:none;*/
+    }
+
+    .loginAndForgot {
+        display: flex;
+        justify-content: space-around;
+    }
+
+
+    #CaptchaInputText {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        background-color: #97144d;
+        color: #ffffff;
+        border: none;
+        margin-bottom: 10px;
+        margin-top: 5px;
+        padding: 10px 25px 10px 25px;
+    }
+
+        .btn-primary:hover {
+            background-color: #ffffff;
+            color: #97144d;
+        }
+</style>
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+@*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>*@
+
+<!-- Include Bootstrap and Bootstrap Notify -->
+<script src="~/Scripts/bootstrap.min.js"></script>
+@*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.7/bootstrap-notify.min.js"></script>
+
+
+
+@*   <script src="~/Scripts/bootstrap-notify.js"></script>*@
+
+
+<div class="login-form-container">
+    @using (Html.BeginForm("Login", "AxisBankHome", FormMethod.Post, new { @class = "login-form" }))
+    {
+        <h2>Login To Your  Account</h2>
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="capcha_img">
+            <div class="form-group">
+                @Html.MathCaptcha()
+            </div>
+            <div class="help-block">@ViewBag.ErrorMessage</div>
+        </div>
+        <div class="loginAndForgot">
+            <div class="dis">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <div class="forgot-password-link dis">
+                @Html.ActionLink("Forgot Password?", "ForgotPassword", "AxisBankHome", new { }, new { })
+            </div>
+
+        </div>
+
+
+        <div class="register-link">
+            Don't have an account?
+            @Html.ActionLink("Create New Account", "SignUp", "AxisBankHome", new { }, new { @class = "register-link" })
+        </div>
+
+    }
+
+
+
+
+
+
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <script>
+            $.notify({
+                icon: 'bi bi-exclamation-triangle',
+                message: '@Html.Raw(ViewBag.Message)'
+            }, {
+                type: 'danger',
+                timer: 2000,
+                placement: {
+                    from: 'top',
+                    align: 'right'
+                }
+            });
+        </script>
+    }
+

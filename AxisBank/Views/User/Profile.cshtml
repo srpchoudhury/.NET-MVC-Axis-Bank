@@ -1,0 +1,75 @@
+﻿@model AxisBank.Models.UserProfileDetailsModel
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<style>
+    .image{
+        height: 150px;
+        width: 150px;
+        border-radius: 30px;
+    }
+</style>
+
+<div class="container">
+    <h3>Your Profile Details : </h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-8">
+            <dl class="row">
+                <dt class="col-sm-6">Customer ID:</dt>
+                <dd class="col-sm-6">@Model.CustomerId</dd>
+
+                <dt class="col-sm-6">Password:</dt>
+                <dd class="col-sm-6">@Model.Password</dd>
+
+                <dt class="col-sm-6">First Name:</dt>
+                <dd class="col-sm-6">@Model.FirstName</dd>
+
+                <dt class="col-sm-6">Last Name:</dt>
+                <dd class="col-sm-6">@Model.LastName</dd>
+
+                <dt class="col-sm-6">Account Number:</dt>
+                <dd class="col-sm-6">@Model.AccountNo</dd>
+
+                <dt class="col-sm-6">Account Type:</dt>
+                <dd class="col-sm-6">@Model.AccountType</dd>
+
+                <dt class="col-sm-6">Gender:</dt>
+                <dd class="col-sm-6">@Model.Gender</dd>
+
+                <dt class="col-sm-6">Mobile Number:</dt>
+                <dd class="col-sm-6">@Model.MobileNo</dd>
+
+                <dt class="col-sm-6">Email:</dt>
+                <dd class="col-sm-6">@Model.Email</dd>
+
+                <dt class="col-sm-6">Marital Status:</dt>
+                <dd class="col-sm-6">@Model.MaritalStatus</dd>
+
+                <dt class="col-sm-6">Date of Birth:</dt>
+                <dd class="col-sm-6">@Model.DateOfBirth.ToShortDateString()</dd>
+
+                <dt class="col-sm-6">ID Card Type:</dt>
+                <dd class="col-sm-6">@Model.IdCardType</dd>
+
+                <dt class="col-sm-6">ID Card Number:</dt>
+                <dd class="col-sm-6">@Model.IdCardNumber</dd>
+
+                <dt class="col-sm-6">Address:</dt>
+                <dd class="col-sm-6">@Model.Address</dd>
+
+                <dt class="col-sm-6">Balance:</dt>
+                <dd class="col-sm-6">@Model.TotalBalance</dd>
+
+
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <img class="image" src="data:image;base64,@System.Convert.ToBase64String(@Model.Image)" />
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,194 @@
+﻿
+
+﻿@model AxisBank.Models.CustomerAndImageViewModel
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<link href="~/Content/SignUpUser.css" rel="stylesheet" />
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
+<script src="~/Scripts/SignUpUser.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-10 col-lg-8 col-xl-6 text-center p-0 mt-3 mb-2">
+
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2 id="heading">Sign Up Your User Account</h2>
+                <p>Fill all form field to go to next step</p>
+
+                @using (Html.BeginForm("SignUpNewAccount", "AxisBankHome", FormMethod.Post, new { enctype = "multipart/form-data", id = "msform" }))
+            {
+
+         
+                    <!-- progressbar -->
+                <ul id="progressbar">
+                    <li class="active" id="account"><strong>Account</strong></li>
+                    <li id="personal"><strong>Personal</strong></li>
+                    <li id="payment"><strong>Image</strong></li>
+                    <li id="confirm"><strong>Finish</strong></li>
+                </ul>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                </div> <br> <!-- fieldsets -->
+                <fieldset>
+                    <div class="form-card">
+                        <div class="row">
+                            <div class="col-7">
+                                <h2 class="fs-title">Account Information:</h2>
+                            </div>
+                            <div class="col-5">
+                                <h2 class="steps">Step 1 - 4</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+
+
+                                @Html.LabelFor(model => model.AxisAta.FirstName, new { @class = "formlabel" })
+                                @Html.TextBoxFor(model => model.AxisAta.FirstName, new { @placeholder = "Enter your FirstName", @name = "Username" })
+
+                                @Html.LabelFor(model => model.AxisAta.LastName, new { @class = "formlabel" })
+                                @Html.TextBoxFor(model => model.AxisAta.LastName, new { @placeholder = "Enter your LastName", @name = "Password" })
+
+
+
+                                @Html.LabelFor(model => model.AxisAta.MobileNo, new { @class = "formlabel" })
+                                @Html.TextBoxFor(model => model.AxisAta.MobileNo, new { @placeholder = "MobileNo", @name = "lname" })
+
+                            </div>
+                            <div class="col-6">
+                                @Html.LabelFor(model => model.AxisAta.Password, new { @class = "formlabel" })
+                                @Html.PasswordFor(model => model.AxisAta.Password, new { @placeholder = "Enter Your Password", @name = "ConfirmPassword" })
+
+                                @Html.LabelFor(model => model.AxisAta.AccountType, new { @class = "formlabel" })
+                                @Html.DropDownListFor(model => model.AxisAta.AccountType, new SelectList(new List<string> { "Savings", "Current", "Zero" }), "Select Account Type", new { @class = "form-select", required = "required" })
+
+                                @Html.LabelFor(model => model.AxisAta.Email, new { @class = "formlabel" })
+                                @Html.TextBoxFor(model => model.AxisAta.Email, new { @placeholder = "Email", @name = "phno" })
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <input type="button" name="next" class="next action-button" value="Next" />
+                </fieldset>
+                <fieldset>
+                    <div class="form-card">
+                        <div class="row">
+                            <div class="col-7">
+                                <h2 class="fs-title">Personal Information:</h2>
+                            </div>
+                            <div class="col-5">
+                                <h2 class="steps">Step 2 - 4</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+
+                                @Html.LabelFor(model => model.AxisAta.MaritalStatus, new { @class = "formlabel" })
+                                @Html.DropDownListFor(model => model.AxisAta.MaritalStatus, new SelectList(new List<string> { "Married", "Un Married" }), "Select Status", new { @class = "form-select", required = "required" })
+
+                                @Html.LabelFor(model => model.AxisAta.DateOfBirth, new { @class = "formlabel" })
+                                @Html.TextBoxFor(model => model.AxisAta.DateOfBirth, new { type = "date", @placeholder = "DateOfBirth", @name = "phno_2" })
+
+                                @Html.LabelFor(model => model.AxisAta.Address, new { @class = "formlabel" })
+                                @Html.TextBoxFor(model => model.AxisAta.Address, new { @placeholder = "Address", @name = "phno_2" })
+
+                            </div>
+                            <div class="col-6">
+                                @Html.LabelFor(model => model.AxisAta.IdCardType, new { @class = "formlabel" })
+                                @Html.DropDownListFor(model => model.AxisAta.IdCardType, new SelectList(new List<string> { "Pancard", "Adhar Card", "Other" }), "Select ID Card Type", new { @class = "form-select", required = "required" })
+
+                                @Html.LabelFor(model => model.AxisAta.IdCardNumber, new { @class = "formlabel" })
+                                @Html.TextBoxFor(model => model.AxisAta.IdCardNumber, new { @placeholder = "IdCardNumber", @name = "lname" })
+
+
+                                @Html.LabelFor(model => model.AxisAta.Gender, new { @class = "formlabel" })
+                                @Html.DropDownListFor(model => model.AxisAta.Gender, new SelectList(new List<string> { "Male", "Female", "Other" }), "Select Gender", new { @class = "form-select", required = "required" })
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <input type="button" name="next" class="next action-button" value="Next" />
+                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                </fieldset>
+                <fieldset>
+                    <div class="form-card">
+                        <div class="row">
+                            <div class="col-7">
+                                <h2 class="fs-title">Image Upload:</h2>
+                            </div>
+                            <div class="col-5">
+                                <h2 class="steps">Step 3 - 4</h2>
+                            </div>
+                        </div>
+                        <label class="fieldlabels">Upload Your Photo:</label>
+                        @Html.TextBoxFor(model => model.Imup, new { type = "file", accept = "image/*" })
+
+
+
+
+                    </div>
+                    <input type="submit" id="submit" name="next" class="next action-button" value="Submit" />
+                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                </fieldset>
+                <fieldset>
+                    <div class="form-card">
+                        <div class="row">
+                            <div class="col-7">
+                                <h2 class="fs-title">Finish:</h2>
+                            </div>
+                            <div class="col-5">
+                                <h2 class="steps">Step 4 - 4</h2>
+                            </div>
+                        </div> <br><br>
+                        <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+                        <div class="row justify-content-center">
+                            <div class="col-3">
+                                <img src="~/Images/img.png" class="fit-image" />
+                            </div>
+                        </div> <br><br>
+                        <div class="row justify-content-center">
+                            <div class="col-7 text-center">
+                                <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+  
+
+
+
+
+    var j = @ViewBag.JValue;
+    // Check the value of j
+    if (j > 0) {
+        // Hide all fieldsets except the last one
+        $("fieldset").hide();
+        // Show the last fieldset
+        $("fieldset:last").show();
+        // Remove any existing active class from progress bar items
+        $("#progressbar li").removeClass("active");
+        // Add the "active" class to the last progress bar item
+        $("#progressbar li:last").addClass("active");
+        // Hid"e the progress bar
+        $(".progress-bar").hide();
+
+
+    }
+
+</script>

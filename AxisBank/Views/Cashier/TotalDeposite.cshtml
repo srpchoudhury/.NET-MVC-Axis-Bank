@@ -1,0 +1,69 @@
+﻿@model  List<AxisBank.Models.TotalDepositeStatement>
+@{
+    ViewBag.Title = "TotalDeposite";
+    Layout = "~/Views/Shared/_LayoutCashier.cshtml";
+}
+
+<h2>Total Deposite</h2>
+<label for="" style="font-weight:bold">Date From</label>
+<input type="date" id="dateFrom" placeholder="Date From">
+<label for="" style="font-weight:bold">Date To</label>
+<input type="date" id="dateTo" placeholder="Date To">
+<button id="searchButton" class="btn btn-primary">Search</button>
+
+
+<hr />
+<table class="table table-striped">
+    <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Credit</th>
+        <th>Balance</th>
+        <th>Acc Holder Name</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Date</td>
+            <td>@item.Description</td>
+            <td>@item.Credit</td>
+            <td>@item.Balance</td>
+            <td>@item.FirstName</td>
+        </tr>
+    }
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+
+    //date filter
+    $(document).ready(function () {
+
+        $('#searchButton').click(function () {
+            var dateFrom = new Date($('#dateFrom').val());
+            var dateTo = new Date($('#dateTo').val());
+
+
+            $('table tr:gt(0)').each(function () {
+                var row = $(this);
+                var dateParts = row.find('td:first').text().split(' ')[0].split('-');
+                var rowDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+
+                console.log("Row Date: " + rowDate);
+                console.log("Date From: " + dateFrom);
+                console.log("Date To: " + dateTo);
+
+
+                if (rowDate >= dateFrom && rowDate <= dateTo) {
+                    row.show();
+                } else {
+                    row.hide();
+                }
+            });
+        });
+    });
+</script>
+
+
+

@@ -1,0 +1,49 @@
+﻿
+/* Custom CSS for form styling */
+.form-label {
+    font-weight: bold;
+}
+
+/* Styling for the form container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+
+
+/* Styling for form fields */
+.form-control {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Styling for the submit button */
+.btn-primary {
+    background-color: #97144d;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #ffffff;
+        color: #97144d;
+    }
+
+/* Styling for error messages */
+.text-danger {
+    color: red;
+}
+
+

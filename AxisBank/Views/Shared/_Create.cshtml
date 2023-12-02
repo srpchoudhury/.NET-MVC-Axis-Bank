@@ -1,0 +1,102 @@
+﻿@model AxisBank.Models.CustomerAndImageViewModel
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div class="mb-3 row">
+
+    <div class="col">
+        @Html.LabelFor(model => model.AxisAta.FirstName, new { @class = "form-label" })
+        @Html.EditorFor(model => model.AxisAta.FirstName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+        @Html.ValidationMessageFor(model => model.AxisAta.FirstName, "", new { @class = "text-danger" })
+    </div>
+    <div class="col">
+        @Html.LabelFor(model => model.AxisAta.LastName, new { @class = "form-label" })
+        @Html.EditorFor(model => model.AxisAta.LastName, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+        @Html.ValidationMessageFor(model => model.AxisAta.LastName, "", new { @class = "text-danger" })
+    </div>
+    <div class="col">
+        @Html.LabelFor(model => model.AxisAta.Password, new { @class = "form-label" })
+        @Html.EditorFor(model => model.AxisAta.Password, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+        @Html.ValidationMessageFor(model => model.AxisAta.Password, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="mb-3 row">
+
+    <div class="col">
+        @Html.Label("Account Type", new { @class = "form-label" })
+        @Html.DropDownListFor(model => model.AxisAta.AccountType, new SelectList(new List<string> { "Savings", "Current", "Zero" }), "Select Account Type", new { @class = "form-select", required = "required" })
+        @Html.ValidationMessageFor(model => model.AxisAta.AccountType, "", new { @class = "text-danger" })
+    </div>
+    <div class="col">
+       
+        @Html.LabelFor(model => model.Imup, new { @class = "form-label" })
+        @Html.TextBoxFor(model => model.Imup, new { type = "file", accept = "image/*", @class = "form-control" })
+
+    </div>
+    <div class="col">
+        @Html.LabelFor(model => model.AxisAta.Email, new { @class = "form-label" })
+        @Html.EditorFor(model => model.AxisAta.Email, new { htmlAttributes = new { @class = "form-control", required = "required", type = "email" } })
+        @Html.ValidationMessageFor(model => model.AxisAta.Email, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="mb-3 row">
+    <div class="col">
+        @Html.LabelFor(model => model.AxisAta.MobileNo, new { @class = "form-label" })
+        @Html.EditorFor(model => model.AxisAta.MobileNo, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+        @Html.ValidationMessageFor(model => model.AxisAta.MobileNo, "", new { @class = "text-danger" })
+    </div>
+    <div class="col">
+        @Html.LabelFor(model => model.AxisAta.MaritalStatus, new { @class = "form-label" })
+        @Html.DropDownListFor(model => model.AxisAta.MaritalStatus, new SelectList(new List<string> { "Married", "Un Married" }), "Select Status", new { @class = "form-select", required = "required" })
+        @Html.ValidationMessageFor(model => model.AxisAta.MaritalStatus, "", new { @class = "text-danger" })
+    </div>
+    <div class="col">
+        @Html.LabelFor(model => model.AxisAta.DateOfBirth, new { @class = "form-label" })
+        @Html.EditorFor(model => model.AxisAta.DateOfBirth, new { htmlAttributes = new { @class = "form-control", required = "required", type = "date" } })
+        @Html.ValidationMessageFor(model => model.AxisAta.DateOfBirth, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="mb-3 row">
+    <div class="col">
+        @Html.Label("ID Card Type", new { @class = "form-label" })
+        @Html.DropDownListFor(model => model.AxisAta.IdCardType, new SelectList(new List<string> { "Pancard", "Adhar Card", "Other" }), "Select ID Card Type", new { @class = "form-select", required = "required" })
+        @Html.ValidationMessageFor(model => model.AxisAta.IdCardType, "", new { @class = "text-danger" })
+    </div>
+    <div class="col">
+        @Html.LabelFor(model => model.AxisAta.IdCardNumber, new { @class = "form-label" })
+        @Html.EditorFor(model => model.AxisAta.IdCardNumber, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+        @Html.ValidationMessageFor(model => model.AxisAta.IdCardNumber, "", new { @class = "text-danger" })
+    </div>
+    <div class="col">
+        @Html.Label("Gender", new { @class = "form-label" })
+        @Html.DropDownListFor(model => model.AxisAta.Gender, new SelectList(new List<string> { "Male", "Female", "Other" }), "Select Gender", new { @class = "form-select", required = "required" })
+        @Html.ValidationMessageFor(model => model.AxisAta.Gender, "", new { @class = "text-danger" })
+    </div>
+
+</div>
+
+<div class="mb-3 row">
+
+
+    <div class="col">
+        @Html.LabelFor(model => model.AxisAta.Address, new { @class = "form-label" })
+        @Html.EditorFor(model => model.AxisAta.Address, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+        @Html.ValidationMessageFor(model => model.AxisAta.Address, "", new { @class = "text-danger" })
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+
+</div>
+
+
+
+<div class="mb-3 text-center">
+    <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+
+
+

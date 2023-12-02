@@ -1,0 +1,44 @@
+﻿@model AxisBank.Models.CustomerAndImageViewModel
+@{
+    ViewBag.Title = "CreateNewAccount";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+
+
+<div class="container">
+    @using (Html.BeginForm("CreateNewAccount", "Admin", FormMethod.Post, new { @class = "needs-validation", novalidate = "true", @id = "yourFormId", enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.Partial("_Create")
+    }
+</div>
+
+<script>
+        // Check if a success message is available in TempData
+    var successMessage = '@TempData["SuccessMessage"]';
+    // Check if an error message is available in TempData
+    var errorMessage = '@TempData["ErrorMessage"]';
+
+    if (successMessage) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Registration Successful!',
+            html: '<i class="fas fa-check-circle"></i> ' + successMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    } else if (errorMessage) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Registration Error',
+            text: errorMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    }
+
+</script>
+

@@ -1,0 +1,62 @@
+﻿
+/* Container for the registration form */
+#register-form-container {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    display: flex;
+}
+
+    /* Styling for the registration form */
+    #register-form-container .login-form {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        text-align: center;
+    }
+
+        /* Header text for registration form */
+        #register-form-container .login-form h2 {
+            color: #97144d;
+        }
+
+        /* Label and input field styles for registration form */
+        #register-form-container .login-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        #register-form-container .login-form .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Style for the registration button */
+        #register-form-container .login-form .btn-primary {
+            background-color: #97144d;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-bottom: 10px; /* Add margin to separate from the link */
+        }
+
+            #register-form-container .login-form .btn-primary:hover {
+                background-color: #ffffff;
+                color: #97144d;
+            }
+
+    /* Styling for the "Back to Login" link */
+    #register-form-container .back-to-login-link a {
+        color: #97144d;
+        text-decoration: none;
+    }
+
+        #register-form-container .back-to-login-link a:hover {
+            text-decoration: underline;
+        }

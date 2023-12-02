@@ -1,0 +1,63 @@
+﻿@model AxisBank.Models.AxisBank_tblAllAccount
+@{
+    ViewBag.Title = "WithdrawOperation";
+    Layout = "~/Views/Shared/_LayoutCashier.cshtml";
+}
+
+<script>
+
+    var EMessage = '@TempData["NotWithdraw"]';
+    var zero = '@TempData["Zero"]';
+    var notFound = '@TempData["ErrorMessage"]';
+
+    if (EMessage) {
+        Swal.fire({
+            icon: 'error',
+            text: EMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    } else if (zero) {
+        Swal.fire({
+            icon: 'error',
+            text: zero,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    } 
+    else if (notFound) {
+        Swal.fire({
+            icon: 'error',
+            text: notFound,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    } 
+</script>
+
+<h3>Withdraw Form</h3>
+<hr />
+
+
+
+<div class="container">
+    @using (Html.BeginForm("CheckAccountForWithdrawOperation", "Cashier", FormMethod.Post, new { @class = "needs-validation", novalidate = "true" }))
+    {
+        <div class="mb-3 row">
+            <div class="col">
+                <label class="form-label" for="lblEmail">Account No</label>
+                @Html.TextBoxFor(model => model.AccountNo, new { @class = "form-control", required = "required", })
+                @Html.ValidationMessageFor(model => model.AccountNo, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="col">
+
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+
+
+
+            </div>
+            }
+        </div>
+

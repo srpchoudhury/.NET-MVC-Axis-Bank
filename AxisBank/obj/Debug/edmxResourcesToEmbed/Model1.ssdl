@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AxisBankDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AxisBank_tblAllAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="AccountNo" Type="varchar" MaxLength="50" />
+    <Property Name="AccountType" Type="varchar" MaxLength="50" />
+    <Property Name="Gender" Type="varchar" MaxLength="50" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="MaritalStatus" Type="varchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="date" />
+    <Property Name="IdCardType" Type="varchar" MaxLength="50" />
+    <Property Name="IdCardNumber" Type="varchar" MaxLength="50" />
+    <Property Name="UploadPhoto" Type="varbinary(max)" />
+    <Property Name="Address" Type="varchar" MaxLength="300" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="UpdatedOn" Type="datetime2" Precision="7" />
+    <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="AxisBank_tblBalance">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Balance" Type="float" />
+    <Property Name="AccountId" Type="int" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" />
+    <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="UpdatedOn" Type="datetime2" Precision="7" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="AxisBank_tblLogin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="UpdatedOn" Type="datetime2" Precision="7" />
+    <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="AxisBank_tblRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Role" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="UpdatedOn" Type="datetime2" Precision="7" />
+    <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="EmployeeList">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="varchar" MaxLength="50" />
+    <Property Name="Role" Type="int" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="date" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="UpdatedOn" Type="date" />
+    <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblAccountStatement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="Debit" Type="float" />
+    <Property Name="Credit" Type="float" />
+    <Property Name="Balance" Type="float" />
+    <Property Name="AccountId" Type="int" />
+  </EntityType>
+  <Association Name="FK_AxisBank_tblBalance_AxisBank_tblAllAccount">
+    <End Role="AxisBank_tblAllAccount" Type="Self.AxisBank_tblAllAccount" Multiplicity="0..1" />
+    <End Role="AxisBank_tblBalance" Type="Self.AxisBank_tblBalance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AxisBank_tblAllAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AxisBank_tblBalance">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AxisBank_tblLogin_AxisBank_tblLogin">
+    <End Role="AxisBank_tblLogin" Type="Self.AxisBank_tblLogin" Multiplicity="1" />
+    <End Role="AxisBank_tblLogin1" Type="Self.AxisBank_tblLogin" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AxisBank_tblLogin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AxisBank_tblLogin1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeList_EmployeeList">
+    <End Role="AxisBank_tblRole" Type="Self.AxisBank_tblRole" Multiplicity="0..1" />
+    <End Role="EmployeeList" Type="Self.EmployeeList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AxisBank_tblRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeList">
+        <PropertyRef Name="Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AxisBankDBModelStoreContainer">
+    <EntitySet Name="AxisBank_tblAllAccount" EntityType="Self.AxisBank_tblAllAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AxisBank_tblBalance" EntityType="Self.AxisBank_tblBalance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AxisBank_tblLogin" EntityType="Self.AxisBank_tblLogin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AxisBank_tblRole" EntityType="Self.AxisBank_tblRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeList" EntityType="Self.EmployeeList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAccountStatement" EntityType="Self.tblAccountStatement" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AxisBank_tblBalance_AxisBank_tblAllAccount" Association="Self.FK_AxisBank_tblBalance_AxisBank_tblAllAccount">
+      <End Role="AxisBank_tblAllAccount" EntitySet="AxisBank_tblAllAccount" />
+      <End Role="AxisBank_tblBalance" EntitySet="AxisBank_tblBalance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AxisBank_tblLogin_AxisBank_tblLogin" Association="Self.FK_AxisBank_tblLogin_AxisBank_tblLogin">
+      <End Role="AxisBank_tblLogin" EntitySet="AxisBank_tblLogin" />
+      <End Role="AxisBank_tblLogin1" EntitySet="AxisBank_tblLogin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeList_EmployeeList" Association="Self.FK_EmployeeList_EmployeeList">
+      <End Role="AxisBank_tblRole" EntitySet="AxisBank_tblRole" />
+      <End Role="EmployeeList" EntitySet="EmployeeList" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

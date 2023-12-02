@@ -1,0 +1,47 @@
+﻿@model List<AxisBank.Models.tblAccountStatement>
+  
+@{
+    ViewBag.Title = "Deposite Amount In Account";
+    Layout = "~/Views/Shared/_LayoutCashier.cshtml";
+}
+
+<h2> This Account Statement</h2>
+<script>
+        // Check if a success message is available in TempData
+    var Deposite = '@TempData["Deposite"]';
+    if (Deposite) {
+        Swal.fire({
+            icon: 'success',
+            /* html: '<i class="fas fa-check-circle"></i> ' + Deposite,*/
+            text: Deposite,
+            confirmButtonText: 'OK'
+        });
+    }
+</script>
+<div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Transaction Description</th>
+                    <th>Debit</th>
+                    <th>Credit</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Date</td>
+                        <td>@item.Description</td>
+                        <td>@item.Debit</td>
+                        <td>@item.Credit</td>
+                        <td>@item.Balance</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+

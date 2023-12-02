@@ -1,0 +1,130 @@
+﻿@model IEnumerable<AxisBank.Models.AxisBank_tblAllAccount>
+
+@{
+    ViewBag.Title = "ShowAllUsers";
+    Layout = "~/Views/Shared/_LayoutCashier.cshtml";
+}
+
+
+<table class="table table-striped " id="tblDepartment">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+
+
+
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "EditAccountDetails", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteAccount", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script>
+        // Check if a success message is available in TempData
+    var successMessage = '@TempData["SuccessMessage"]';
+    // Check if an error message is available in TempData
+    var errorMessage = '@TempData["ErrorMessage"]';
+
+    var SMessage = '@TempData["SMessage"]';
+
+      var ErrorMessage = '@TempData["EMessage"]';
+
+    if (successMessage) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Registration Successful!',
+            html: '<i class="fas fa-check-circle"></i> ' + successMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    } else if (errorMessage) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Registration Error',
+            text: errorMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    }else if (SMessage) {
+        Swal.fire({
+            icon: 'success',
+            text: SMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    }else if (EMessage) {
+        Swal.fire({
+            icon: 'error',
+            text: EMessage,
+            showCloseButton: true,
+            confirmButtonText: 'OK'
+        });
+    }
+
+     $(document).ready(function () {
+
+         $('#tblDepartment').dataTable({
+      oLanguage: {
+          sLengthMenu: "<select>" +
+              "<option value='10'>10</option>" +
+              "<option value='20'>20</option>" +
+              "<option value='100'>100</option>" +
+              "<option value='-1'>All</option>" +
+              "</select>"
+      },
+      "iDisplayLength": 10,
+      scrollY: 500,
+      scrollX: true,
+      scrollCollapse: true,
+      fixedColumns: true,
+      orderMulti: true,
+  });
+</script>
+
